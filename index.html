@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fitTrack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet"
+      />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">fitTrack</p>
+          <h1>Sagligini tek panelden takip et.</h1>
+          <p class="hero-copy">
+            Profilini guncelle, antrenmanlarini ve ogunlerini kaydet, gelisimini
+            grafikte izle.
+          </p>
+        </div>
+        <div class="hero-badge">
+          <span>Gunluk odak</span>
+          <strong id="focusMessage">Bugun verilerini ekleyerek basla.</strong>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel panel-profile">
+          <div class="section-heading">
+            <h2>Profil</h2>
+            <p>Bilgilerini kaydet veya guncelle.</p>
+          </div>
+
+          <form id="profileForm" class="form-grid">
+            <label>
+              Ad Soyad
+              <input type="text" name="name" placeholder="Ali Yilmaz" required />
+            </label>
+            <label>
+              Hedef
+              <input type="text" name="goal" placeholder="Kilo vermek" required />
+            </label>
+            <label>
+              Boy (cm)
+              <input type="number" name="height" min="100" max="250" required />
+            </label>
+            <label>
+              Kilo (kg)
+              <input type="number" name="weight" min="30" max="300" step="0.1" required />
+            </label>
+            <button type="submit" class="primary-button">Profili Kaydet</button>
+          </form>
+
+          <div id="profileCard" class="profile-card empty-state">
+            Henuz profil kaydedilmedi.
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <h2>Dashboard</h2>
+            <p>Bugunun hizli ozeti.</p>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span>Toplam Antrenman</span>
+              <strong id="workoutCount">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Bugunku Kalori</span>
+              <strong id="todayCalories">0</strong>
+            </article>
+            <article class="stat-card">
+              <span>Son Kilo</span>
+              <strong id="latestWeight">-</strong>
+            </article>
+            <article class="stat-card">
+              <span>Profil Hedefi</span>
+              <strong id="goalSummary">-</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <h2>Antrenman Ekle</h2>
+            <p>Yeni antrenmani kaydet ve listede gor.</p>
+          </div>
+
+          <form id="workoutForm" class="form-grid compact-grid">
+            <label>
+              Tur
+              <input type="text" name="type" placeholder="Kardiyo" required />
+            </label>
+            <label>
+              Sure (dk)
+              <input type="number" name="duration" min="1" required />
+            </label>
+            <label>
+              Yogunluk
+              <select name="intensity" required>
+                <option value="Dusuk">Dusuk</option>
+                <option value="Orta">Orta</option>
+                <option value="Yuksek">Yuksek</option>
+              </select>
+            </label>
+            <button type="submit" class="primary-button">Antrenman Ekle</button>
+          </form>
+
+          <div id="workoutList" class="stack-list empty-state">
+            Henuz antrenman eklenmedi.
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <h2>Beslenme Ogunu</h2>
+            <p>Ogun ekle ve gunluk toplamlari takip et.</p>
+          </div>
+
+          <form id="mealForm" class="form-grid compact-grid">
+            <label>
+              Ogun Adi
+              <input type="text" name="name" placeholder="Kahvalti" required />
+            </label>
+            <label>
+              Kalori
+              <input type="number" name="calories" min="0" required />
+            </label>
+            <label>
+              Protein (g)
+              <input type="number" name="protein" min="0" required />
+            </label>
+            <label>
+              Karbonhidrat (g)
+              <input type="number" name="carbs" min="0" required />
+            </label>
+            <label>
+              Yag (g)
+              <input type="number" name="fat" min="0" required />
+            </label>
+            <button type="submit" class="primary-button">Ogun Ekle</button>
+          </form>
+
+          <div class="summary-strip">
+            <div><span>Kalori</span><strong id="summaryCalories">0</strong></div>
+            <div><span>Protein</span><strong id="summaryProtein">0g</strong></div>
+            <div><span>Karbonhidrat</span><strong id="summaryCarbs">0g</strong></div>
+            <div><span>Yag</span><strong id="summaryFat">0g</strong></div>
+          </div>
+
+          <div id="mealList" class="stack-list empty-state">
+            Henuz ogun eklenmedi.
+          </div>
+        </section>
+
+        <section class="panel panel-wide">
+          <div class="section-heading">
+            <h2>Progress Takibi</h2>
+            <p>Tarih bazli verilerini ekle ve grafikte izle.</p>
+          </div>
+
+          <form id="progressForm" class="form-grid compact-grid">
+            <label>
+              Tarih
+              <input type="date" name="date" required />
+            </label>
+            <label>
+              Kilo (kg)
+              <input type="number" name="weight" min="30" max="300" step="0.1" required />
+            </label>
+            <label>
+              Yag Orani (%)
+              <input type="number" name="bodyFat" min="1" max="70" step="0.1" required />
+            </label>
+            <label>
+              Bel Cevresi (cm)
+              <input type="number" name="waist" min="30" max="200" step="0.1" required />
+            </label>
+            <button type="submit" class="primary-button">Progress Ekle</button>
+          </form>
+
+          <div class="chart-card">
+            <svg id="progressChart" viewBox="0 0 640 260" role="img" aria-label="Kilo progress grafigi"></svg>
+          </div>
+
+          <div id="progressList" class="stack-list empty-state">
+            Henuz progress verisi eklenmedi.
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
