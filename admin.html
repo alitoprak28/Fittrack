@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fitTrack Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./admin.html">
+          <span class="brand-mark">FT</span>
+          <span>
+            <strong>fitTrack Admin</strong>
+            <small>Yönetim ve kullanıcı özeti</small>
+          </span>
+        </a>
+
+        <div class="topbar-meta">
+          <a class="secondary-button topbar-link" href="./index.html">Kullanıcı Paneli</a>
+          <div class="topbar-chip">
+            <span>Admin Oturumu</span>
+            <strong id="adminSessionStatus">Kapalı</strong>
+          </div>
+          <button id="adminLogoutButton" class="ghost-button hidden" type="button">Çıkış yap</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Ayrı Yönetim Alanı</p>
+          <h1>Admin paneli artık ayrı bir yerde.</h1>
+          <p class="hero-text">
+            Kullanıcı tarafını bozmadan, tüm kullanıcıları, antrenmanları, öğünleri ve
+            son aktiviteleri tek panelde yönetebilirsin.
+          </p>
+
+          <div class="hero-pills">
+            <span>Admin Girişi</span>
+            <span>Kullanıcı Özeti</span>
+            <span>Son Aktiviteler</span>
+            <span>Toplam İstatistikler</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <svg viewBox="0 0 420 320" aria-label="Admin panel görseli" role="img">
+            <rect x="22" y="24" width="376" height="270" rx="28" fill="#0f172a" opacity="0.08" />
+            <rect x="14" y="16" width="376" height="270" rx="28" fill="#ffffff" stroke="#dbe3f0" />
+            <rect x="36" y="40" width="150" height="86" rx="20" fill="#eff6ff" />
+            <rect x="206" y="40" width="150" height="86" rx="20" fill="#fff7ed" />
+            <rect x="36" y="144" width="320" height="116" rx="24" fill="#f8fafc" />
+            <text x="54" y="71" font-size="14" fill="#2563eb" font-family="DM Sans">Toplam Kullanıcı</text>
+            <text x="54" y="103" font-size="28" fill="#0f172a" font-weight="700" font-family="Space Grotesk">124</text>
+            <text x="224" y="71" font-size="14" fill="#f97316" font-family="DM Sans">Aktif Kayıtlar</text>
+            <text x="224" y="103" font-size="28" fill="#0f172a" font-weight="700" font-family="Space Grotesk">482</text>
+            <rect x="58" y="174" width="250" height="16" rx="8" fill="#e2e8f0" />
+            <rect x="58" y="174" width="166" height="16" rx="8" fill="#14b8a6" />
+            <rect x="58" y="206" width="250" height="16" rx="8" fill="#e2e8f0" />
+            <rect x="58" y="206" width="210" height="16" rx="8" fill="#2563eb" />
+            <rect x="58" y="238" width="250" height="16" rx="8" fill="#e2e8f0" />
+            <rect x="58" y="238" width="128" height="16" rx="8" fill="#fb7185" />
+          </svg>
+        </div>
+      </section>
+
+      <main class="layout">
+        <section class="panel panel-auth">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Admin Erişimi</p>
+              <h2>Yönetici girişi</h2>
+            </div>
+            <p>Bu alan sadece admin hesabı ile açılır.</p>
+          </div>
+
+          <div class="admin-auth-layout">
+            <form id="adminLoginForm" class="card-form card-form-admin">
+              <h3>Admin Girişi</h3>
+              <label>
+                Admin E-posta
+                <input type="email" name="email" placeholder="admin@fittrack.local" required />
+              </label>
+              <label>
+                Şifre
+                <input type="password" name="password" placeholder="••••••••" required />
+              </label>
+              <button class="secondary-button button-solid" type="submit">Admin olarak giriş yap</button>
+              <p class="helper-text">
+                Demo hesap: <strong>admin@fittrack.local</strong> / <strong>admin123</strong>
+              </p>
+            </form>
+
+            <article class="session-card" id="adminProfileCard">
+              <span class="status-dot"></span>
+              <strong>Admin oturumu kapalı</strong>
+              <p>
+                Giriş yaptıktan sonra tüm kullanıcı sayıları, antrenmanlar, öğünler ve
+                son aktiviteler burada görünür olacak.
+              </p>
+            </article>
+          </div>
+
+          <div id="adminMessageBar" class="message-bar" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-wide hidden" id="adminPanel">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Admin Paneli</p>
+              <h2>Kullanıcılar ve genel durum</h2>
+            </div>
+            <p>Tarayıcı içindeki yerel verilerin yönetim özeti.</p>
+          </div>
+
+          <div class="stats-grid admin-grid">
+            <article class="stat-card accent-dark">
+              <span>Toplam Kullanıcı</span>
+              <strong id="adminUserCount">0</strong>
+            </article>
+            <article class="stat-card accent-dark">
+              <span>Toplam Antrenman</span>
+              <strong id="adminWorkoutCount">0</strong>
+            </article>
+            <article class="stat-card accent-dark">
+              <span>Toplam Öğün</span>
+              <strong id="adminMealCount">0</strong>
+            </article>
+            <article class="stat-card accent-dark">
+              <span>Su Kayıtları</span>
+              <strong id="adminWaterCount">0</strong>
+            </article>
+          </div>
+
+          <div class="two-column-grid">
+            <div id="userList" class="stack-list empty-state">Henüz kullanıcı bulunmuyor.</div>
+            <div id="recentActivity" class="stack-list empty-state">Henüz aktivite bulunmuyor.</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./admin.js"></script>
+  </body>
+</html>

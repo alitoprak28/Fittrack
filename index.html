@@ -3,197 +3,498 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fitTrack</title>
+    <title>fitTrack | Akıllı Fitness Paneli</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
-        rel="stylesheet"
-      />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="page-shell">
-      <header class="hero">
-        <div>
-          <p class="eyebrow">fitTrack</p>
-          <h1>Sagligini tek panelden takip et.</h1>
-          <p class="hero-copy">
-            Profilini guncelle, antrenmanlarini ve ogunlerini kaydet, gelisimini
-            grafikte izle.
-          </p>
-        </div>
-        <div class="hero-badge">
-          <span>Gunluk odak</span>
-          <strong id="focusMessage">Bugun verilerini ekleyerek basla.</strong>
+      <header class="topbar">
+        <a class="brand" href="#anasayfa">
+          <span class="brand-mark">FT</span>
+          <span>
+            <strong>fitTrack</strong>
+            <small>Akıllı fitness takip paneli</small>
+          </span>
+        </a>
+
+        <div class="topbar-meta">
+          <a class="secondary-button topbar-link" href="./admin.html">Admin Paneli</a>
+          <div class="topbar-chip">
+            <span>Oturum</span>
+            <strong id="sessionStatus">Misafir</strong>
+          </div>
+          <div class="topbar-chip">
+            <span>Oturum Türü</span>
+            <strong id="sessionType">-</strong>
+          </div>
+          <div class="topbar-chip">
+            <span>Rol</span>
+            <strong id="sessionRole">-</strong>
+          </div>
+          <button id="logoutButton" class="ghost-button" type="button">Çıkış yap</button>
         </div>
       </header>
 
+      <section class="hero" id="anasayfa">
+        <div class="hero-copy">
+          <p class="eyebrow">fitTrack deneyimi</p>
+          <h1>Daha güçlü bir takip paneli, daha net bir günlük akış.</h1>
+          <p class="hero-text">
+            Günlük adım, kalori, su, antrenman ve haftalık ilerleme verilerini tek
+            ekranda yönet. Kullanıcı hesabı oluştur, hedeflerini planla ve ilerleme
+            sürecini sade bir panelden takip et.
+          </p>
+
+          <div class="hero-pills">
+            <span>Giriş / Kayıt</span>
+            <span>Kullanıcı Paneli</span>
+            <span>Su Takibi</span>
+            <span>Haftalık Grafik</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="primary-button" href="#dashboard">Dashboard'a git</a>
+            <a class="secondary-button" href="./admin.html">Admin alanını aç</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <svg viewBox="0 0 420 320" aria-label="fitTrack gösterge görseli" role="img">
+            <defs>
+              <linearGradient id="heroCard" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff7ed" />
+                <stop offset="100%" stop-color="#ecfeff" />
+              </linearGradient>
+              <linearGradient id="heroLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f97316" />
+                <stop offset="100%" stop-color="#14b8a6" />
+              </linearGradient>
+            </defs>
+            <rect x="20" y="24" width="380" height="270" rx="28" fill="#0f172a" opacity="0.08" />
+            <rect x="12" y="16" width="380" height="270" rx="28" fill="url(#heroCard)" stroke="#d6d3d1" />
+            <rect x="34" y="42" width="160" height="78" rx="20" fill="#ffffff" />
+            <rect x="210" y="42" width="160" height="78" rx="20" fill="#082f49" />
+            <rect x="34" y="138" width="336" height="120" rx="24" fill="#ffffff" />
+            <circle cx="82" cy="81" r="18" fill="#fdba74" />
+            <path d="M62 82h40" stroke="#f97316" stroke-width="8" stroke-linecap="round" />
+            <text x="117" y="73" fill="#0f172a" font-size="14" font-family="DM Sans">Su Takibi</text>
+            <text x="117" y="96" fill="#0f172a" font-size="24" font-weight="700" font-family="Space Grotesk">2.1 / 2.5 L</text>
+            <text x="230" y="73" fill="#e0f2fe" font-size="14" font-family="DM Sans">Haftalık İlerleme</text>
+            <text x="230" y="96" fill="#ffffff" font-size="24" font-weight="700" font-family="Space Grotesk">%84 tamamlama</text>
+            <path
+              d="M62 224c34-20 44-68 84-68 26 0 44 28 62 28 24 0 37-45 66-45 18 0 37 22 56 35"
+              fill="none"
+              stroke="url(#heroLine)"
+              stroke-width="8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="62" cy="224" r="6" fill="#f97316" />
+            <circle cx="146" cy="156" r="6" fill="#fb7185" />
+            <circle cx="208" cy="184" r="6" fill="#14b8a6" />
+            <circle cx="270" cy="139" r="6" fill="#0ea5e9" />
+            <circle cx="332" cy="174" r="6" fill="#8b5cf6" />
+          </svg>
+        </div>
+      </section>
+
       <main class="layout">
-        <section class="panel panel-profile">
+        <section class="panel panel-auth" id="authPanel">
           <div class="section-heading">
-            <h2>Profil</h2>
-            <p>Bilgilerini kaydet veya guncelle.</p>
+            <div>
+              <p class="section-kicker">Başlangıç</p>
+              <h2>Kayıt ol veya kullanıcı girişi yap</h2>
+            </div>
+            <p>Bu alan sadece kullanıcı hesabı oluşturma ve kullanıcı oturumu için kullanılır.</p>
+          </div>
+
+          <div class="auth-layout">
+            <form id="registerForm" class="card-form">
+              <h3>Kayıt Ol</h3>
+              <label>
+                Ad Soyad
+                <input type="text" name="fullName" placeholder="Ali Toprak" required />
+              </label>
+              <label>
+                E-posta
+                <input type="email" name="email" placeholder="ali@mail.com" required />
+              </label>
+              <label>
+                Şifre
+                <input type="password" name="password" placeholder="••••••••" required />
+              </label>
+              <button class="primary-button" type="submit">Hesap oluştur</button>
+            </form>
+
+            <form id="loginForm" class="card-form">
+              <h3>Giriş Yap</h3>
+              <label>
+                E-posta
+                <input type="email" name="email" placeholder="ali@mail.com" required />
+              </label>
+              <label>
+                Şifre
+                <input type="password" name="password" placeholder="••••••••" required />
+              </label>
+              <button class="secondary-button button-solid" type="submit">Giriş yap</button>
+            </form>
+
+            <article class="session-card" id="currentProfileCard">
+              <span class="status-dot"></span>
+              <strong>Henüz aktif kullanıcı yok</strong>
+              <p>
+                Kullanıcı girişi ile kişisel hedeflerini ve günlük kayıtlarını
+                yönetebilirsin. Admin alanı artık ayrı sayfada açılır.
+              </p>
+            </article>
+          </div>
+
+          <div id="messageBar" class="message-bar" aria-live="polite"></div>
+        </section>
+
+        <section class="panel panel-wide" id="dashboard">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Canlı Özet</p>
+              <h2>Bugünün dashboard görünümü</h2>
+            </div>
+            <p>Adım, kalori, antrenman süresi ve su tüketimi tek yerde.</p>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card accent-orange">
+              <span>Bugünkü Adım</span>
+              <strong id="dashboardSteps">0</strong>
+              <small id="stepsMeta">Hedef için giriş yap</small>
+            </article>
+            <article class="stat-card accent-teal">
+              <span>Günlük Kalori</span>
+              <strong id="dashboardCalories">0 kcal</strong>
+              <small id="caloriesMeta">Beslenme kayıtları bekleniyor</small>
+            </article>
+            <article class="stat-card accent-blue">
+              <span>Antrenman Süresi</span>
+              <strong id="dashboardWorkoutMinutes">0 dk</strong>
+              <small id="workoutMeta">Bugün kayıt yok</small>
+            </article>
+            <article class="stat-card accent-pink">
+              <span>Su Takibi</span>
+              <strong id="dashboardWater">0 ml</strong>
+              <small id="waterMeta">Hedefe uzaklık hesaplanmadı</small>
+            </article>
+          </div>
+
+          <div class="dashboard-lower">
+            <div class="focus-panel">
+              <div>
+                <span>Günün odağı</span>
+                <strong id="focusMessage">Hedeflerini netleştirmek için önce giriş yap.</strong>
+              </div>
+              <div class="mini-progress">
+                <div class="mini-progress-bar" id="waterProgressBar"></div>
+              </div>
+            </div>
+
+            <div class="feature-strip">
+              <article>
+                <strong id="weeklyWorkoutCount">0</strong>
+                <span>Haftalık antrenman</span>
+              </article>
+              <article>
+                <strong id="weeklyMealCount">0</strong>
+                <span>Haftalık öğün kaydı</span>
+              </article>
+              <article>
+                <strong id="weeklyWaterAverage">0 ml</strong>
+                <span>Günlük ortalama su</span>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="goals">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Hedefler</p>
+              <h2>Profil ve hedef ayarları</h2>
+            </div>
+            <p>Serbest yazı yerine ölçülebilir hedefler belirle.</p>
           </div>
 
           <form id="profileForm" class="form-grid">
             <label>
               Ad Soyad
-              <input type="text" name="name" placeholder="Ali Yilmaz" required />
+              <input type="text" name="fullName" placeholder="Ali Toprak" required />
             </label>
             <label>
-              Hedef
-              <input type="text" name="goal" placeholder="Kilo vermek" required />
+              Yaş
+              <input type="number" name="age" min="10" max="90" placeholder="24" required />
             </label>
             <label>
               Boy (cm)
-              <input type="number" name="height" min="100" max="250" required />
+              <input type="number" name="height" min="100" max="240" placeholder="178" required />
             </label>
             <label>
-              Kilo (kg)
-              <input type="number" name="weight" min="30" max="300" step="0.1" required />
-            </label>
-            <button type="submit" class="primary-button">Profili Kaydet</button>
-          </form>
-
-          <div id="profileCard" class="profile-card empty-state">
-            Henuz profil kaydedilmedi.
-          </div>
-        </section>
-
-        <section class="panel">
-          <div class="section-heading">
-            <h2>Dashboard</h2>
-            <p>Bugunun hizli ozeti.</p>
-          </div>
-
-          <div class="stats-grid">
-            <article class="stat-card">
-              <span>Toplam Antrenman</span>
-              <strong id="workoutCount">0</strong>
-            </article>
-            <article class="stat-card">
-              <span>Bugunku Kalori</span>
-              <strong id="todayCalories">0</strong>
-            </article>
-            <article class="stat-card">
-              <span>Son Kilo</span>
-              <strong id="latestWeight">-</strong>
-            </article>
-            <article class="stat-card">
-              <span>Profil Hedefi</span>
-              <strong id="goalSummary">-</strong>
-            </article>
-          </div>
-        </section>
-
-        <section class="panel">
-          <div class="section-heading">
-            <h2>Antrenman Ekle</h2>
-            <p>Yeni antrenmani kaydet ve listede gor.</p>
-          </div>
-
-          <form id="workoutForm" class="form-grid compact-grid">
-            <label>
-              Tur
-              <input type="text" name="type" placeholder="Kardiyo" required />
+              Güncel Kilo (kg)
+              <input type="number" name="currentWeight" min="30" max="300" step="0.1" placeholder="76.5" required />
             </label>
             <label>
-              Sure (dk)
-              <input type="number" name="duration" min="1" required />
-            </label>
-            <label>
-              Yogunluk
-              <select name="intensity" required>
-                <option value="Dusuk">Dusuk</option>
-                <option value="Orta">Orta</option>
-                <option value="Yuksek">Yuksek</option>
+              Ana Hedef
+              <select name="goalType" required>
+                <option value="Kilo vermek">Kilo vermek</option>
+                <option value="Kas kazanmak">Kas kazanmak</option>
+                <option value="Formu korumak">Formu korumak</option>
+                <option value="Dayanıklılığı artırmak">Dayanıklılığı artırmak</option>
               </select>
             </label>
-            <button type="submit" class="primary-button">Antrenman Ekle</button>
+            <label>
+              Hedef Kilo (kg)
+              <input type="number" name="targetWeight" min="30" max="300" step="0.1" placeholder="72" required />
+            </label>
+            <label>
+              Günlük Adım Hedefi
+              <input type="number" name="dailyStepGoal" min="1000" step="500" placeholder="10000" required />
+            </label>
+            <label>
+              Günlük Su Hedefi (ml)
+              <input type="number" name="dailyWaterGoal" min="500" step="250" placeholder="2500" required />
+            </label>
+            <label>
+              Haftalık Antrenman Hedefi
+              <input type="number" name="weeklyWorkoutGoal" min="1" max="14" placeholder="4" required />
+            </label>
+            <button class="primary-button" type="submit">Hedefleri kaydet</button>
           </form>
 
-          <div id="workoutList" class="stack-list empty-state">
-            Henuz antrenman eklenmedi.
-          </div>
+          <div id="goalList" class="goal-grid empty-state">Henüz hedef tanımlanmadı.</div>
         </section>
 
         <section class="panel">
           <div class="section-heading">
-            <h2>Beslenme Ogunu</h2>
-            <p>Ogun ekle ve gunluk toplamlari takip et.</p>
+            <div>
+              <p class="section-kicker">Antrenman</p>
+              <h2>Detaylı antrenman girişi</h2>
+            </div>
+            <p>Tür, bölge, süre ve yoğunlukla net kayıt oluştur.</p>
           </div>
 
-          <form id="mealForm" class="form-grid compact-grid">
+          <form id="workoutForm" class="form-grid">
             <label>
-              Ogun Adi
-              <input type="text" name="name" placeholder="Kahvalti" required />
+              Tarih
+              <input type="date" name="date" required />
+            </label>
+            <label>
+              Antrenman Türü
+              <select name="type" required>
+                <option value="Kardiyo">Kardiyo</option>
+                <option value="Ağırlık">Ağırlık</option>
+                <option value="HIIT">HIIT</option>
+                <option value="Koşu">Koşu</option>
+                <option value="Bisiklet">Bisiklet</option>
+                <option value="Mobilite">Mobilite</option>
+              </select>
+            </label>
+            <label>
+              Hedef Bölge
+              <select name="focus" required>
+                <option value="Tüm Vücut">Tüm Vücut</option>
+                <option value="Üst Vücut">Üst Vücut</option>
+                <option value="Alt Vücut">Alt Vücut</option>
+                <option value="Core">Core</option>
+                <option value="Kondisyon">Kondisyon</option>
+              </select>
+            </label>
+            <label>
+              Yoğunluk
+              <select name="intensity" required>
+                <option value="Düşük">Düşük</option>
+                <option value="Orta">Orta</option>
+                <option value="Yüksek">Yüksek</option>
+              </select>
+            </label>
+            <label>
+              Süre (dk)
+              <input type="number" name="duration" min="5" step="5" placeholder="45" required />
+            </label>
+            <label>
+              Yakılan Kalori
+              <input type="number" name="caloriesBurned" min="0" step="10" placeholder="320" required />
+            </label>
+            <label class="field-wide">
+              Antrenman Notu
+              <textarea name="notes" rows="3" placeholder="Örn. 10 dk ısınma, squat + bench + row kombinasyonu"></textarea>
+            </label>
+            <button class="primary-button" type="submit">Antrenmanı kaydet</button>
+          </form>
+
+          <div id="workoutList" class="stack-list empty-state">Henüz antrenman eklenmedi.</div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Beslenme</p>
+              <h2>Öğün ve makro takibi</h2>
+            </div>
+            <p>Besin girişleri artık kontrollü alanlarla tutuluyor.</p>
+          </div>
+
+          <form id="mealForm" class="form-grid">
+            <label>
+              Tarih
+              <input type="date" name="date" required />
+            </label>
+            <label>
+              Öğün Türü
+              <select name="mealType" required>
+                <option value="Kahvaltı">Kahvaltı</option>
+                <option value="Öğle Yemeği">Öğle Yemeği</option>
+                <option value="Akşam Yemeği">Akşam Yemeği</option>
+                <option value="Ara Öğün">Ara Öğün</option>
+              </select>
+            </label>
+            <label>
+              Besin Kategorisi
+              <select name="foodGroup" required>
+                <option value="Protein ağırlıklı">Protein ağırlıklı</option>
+                <option value="Karbonhidrat dengeli">Karbonhidrat dengeli</option>
+                <option value="Sebze / salata">Sebze / salata</option>
+                <option value="Smoothie / içecek">Smoothie / içecek</option>
+              </select>
+            </label>
+            <label>
+              Porsiyon
+              <input type="text" name="portion" placeholder="1 büyük tabak" required />
             </label>
             <label>
               Kalori
-              <input type="number" name="calories" min="0" required />
+              <input type="number" name="calories" min="0" placeholder="520" required />
             </label>
             <label>
               Protein (g)
-              <input type="number" name="protein" min="0" required />
+              <input type="number" name="protein" min="0" placeholder="38" required />
             </label>
             <label>
               Karbonhidrat (g)
-              <input type="number" name="carbs" min="0" required />
+              <input type="number" name="carbs" min="0" placeholder="42" required />
             </label>
             <label>
-              Yag (g)
-              <input type="number" name="fat" min="0" required />
+              Yağ (g)
+              <input type="number" name="fat" min="0" placeholder="18" required />
             </label>
-            <button type="submit" class="primary-button">Ogun Ekle</button>
+            <button class="secondary-button button-solid" type="submit">Öğünü kaydet</button>
           </form>
 
           <div class="summary-strip">
-            <div><span>Kalori</span><strong id="summaryCalories">0</strong></div>
-            <div><span>Protein</span><strong id="summaryProtein">0g</strong></div>
-            <div><span>Karbonhidrat</span><strong id="summaryCarbs">0g</strong></div>
-            <div><span>Yag</span><strong id="summaryFat">0g</strong></div>
+            <div>
+              <span>Toplam Kalori</span>
+              <strong id="summaryCalories">0 kcal</strong>
+            </div>
+            <div>
+              <span>Protein</span>
+              <strong id="summaryProtein">0 g</strong>
+            </div>
+            <div>
+              <span>Karbonhidrat</span>
+              <strong id="summaryCarbs">0 g</strong>
+            </div>
+            <div>
+              <span>Yağ</span>
+              <strong id="summaryFat">0 g</strong>
+            </div>
           </div>
 
-          <div id="mealList" class="stack-list empty-state">
-            Henuz ogun eklenmedi.
+          <div id="mealList" class="stack-list empty-state">Henüz öğün eklenmedi.</div>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Su Takibi</p>
+              <h2>Günlük su hedefini canlı izle</h2>
+            </div>
+            <p>Hızlı ekleme butonları ile takip çok daha pratik.</p>
           </div>
+
+          <div class="water-layout">
+            <div class="water-card">
+              <div>
+                <span>Bugünkü tüketim</span>
+                <strong id="waterToday">0 ml</strong>
+              </div>
+              <div>
+                <span>Günlük hedef</span>
+                <strong id="waterGoalText">0 ml</strong>
+              </div>
+            </div>
+
+            <div class="water-actions" id="waterQuickActions">
+              <button type="button" class="water-button" data-amount="250">+250 ml</button>
+              <button type="button" class="water-button" data-amount="500">+500 ml</button>
+              <button type="button" class="water-button" data-amount="750">+750 ml</button>
+            </div>
+
+            <form id="waterForm" class="inline-form">
+              <label>
+                Özel miktar (ml)
+                <input type="number" name="amount" min="100" step="50" placeholder="300" required />
+              </label>
+              <button class="primary-button" type="submit">Su ekle</button>
+            </form>
+          </div>
+
+          <div id="waterHistory" class="stack-list empty-state">Bugün henüz su eklenmedi.</div>
         </section>
 
         <section class="panel panel-wide">
           <div class="section-heading">
-            <h2>Progress Takibi</h2>
-            <p>Tarih bazli verilerini ekle ve grafikte izle.</p>
+            <div>
+              <p class="section-kicker">Haftalık İlerleme</p>
+              <h2>Grafik ve hedef listesi</h2>
+            </div>
+            <p>Kilo çizgisi ve adım çubukları ile haftalık tablo.</p>
           </div>
 
-          <form id="progressForm" class="form-grid compact-grid">
+          <form id="progressForm" class="form-grid">
             <label>
               Tarih
               <input type="date" name="date" required />
             </label>
             <label>
               Kilo (kg)
-              <input type="number" name="weight" min="30" max="300" step="0.1" required />
+              <input type="number" name="weight" min="30" max="300" step="0.1" placeholder="75.2" required />
             </label>
             <label>
-              Yag Orani (%)
-              <input type="number" name="bodyFat" min="1" max="70" step="0.1" required />
+              Yağ Oranı (%)
+              <input type="number" name="bodyFat" min="1" max="70" step="0.1" placeholder="18.7" required />
             </label>
             <label>
-              Bel Cevresi (cm)
-              <input type="number" name="waist" min="30" max="200" step="0.1" required />
+              Adım Sayısı
+              <input type="number" name="steps" min="0" step="100" placeholder="9800" required />
             </label>
-            <button type="submit" class="primary-button">Progress Ekle</button>
+            <label>
+              Uyku (saat)
+              <input type="number" name="sleep" min="0" max="24" step="0.5" placeholder="7.5" required />
+            </label>
+            <button class="primary-button" type="submit">İlerlemeyi kaydet</button>
           </form>
 
           <div class="chart-card">
-            <svg id="progressChart" viewBox="0 0 640 260" role="img" aria-label="Kilo progress grafigi"></svg>
+            <svg id="progressChart" viewBox="0 0 760 300" role="img" aria-label="Haftalık ilerleme grafiği"></svg>
           </div>
 
-          <div id="progressList" class="stack-list empty-state">
-            Henuz progress verisi eklenmedi.
+          <div class="two-column-grid">
+            <div id="progressList" class="stack-list empty-state">Henüz ilerleme verisi eklenmedi.</div>
+            <div id="targetHighlights" class="goal-grid empty-state">Giriş yaptıktan sonra hedef kartları burada görünür.</div>
           </div>
         </section>
+
       </main>
     </div>
 
